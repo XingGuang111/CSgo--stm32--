@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>EVK-MIMXRT1060_EIQ_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware eiq Examples Pack for EVK-MIMXRT1060</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.0" date="2024-01-14">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.15.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="EVK-MIMXRT1060_BSP" vendor="NXP" version="18.0.0"/>
+      <package name="EIQ" vendor="NXP" version="1.0.0"/>
+      <package name="MIMXRT1062_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+      <package name="FREERTOS-KERNEL" vendor="NXP" version="2.0.0"/>
+      <package name="LWIP" vendor="NXP" version="2.0.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <examples>
+    <example name="deepviewrt_camera_label_image" folder="boards/evkmimxrt1060/eiq_examples/deepviewrt_camera_label_image" doc="readme.md">
+      <description>DeepViewRT Camera Label Image example shows the demonstration of real-time object recognition using DeepViewRT on an IMXRT platform together with a camera and LCD module.  The firmware uses a user defined model and real-time camera to image classifier.</description>
+      <board name="EVK-MIMXRT1060" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/deepviewrt_camera_label_image.uvprojx"/>
+        <environment name="csolution" load="deepviewrt_camera_label_image.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="deepviewrt_image_detection" folder="boards/evkmimxrt1060/eiq_examples/deepviewrt_image_detection" doc="readme.md">
+      <description>DeepViewRT Image Detection example shows the demonstration of image detection using DeepViewRT on an IMXRT platform. The application will identify multiple objects in a single image and output the result via UART console.</description>
+      <board name="EVK-MIMXRT1060" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/deepviewrt_image_detection.uvprojx"/>
+        <environment name="csolution" load="deepviewrt_image_detection.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="deepviewrt_labelimage" folder="boards/evkmimxrt1060/eiq_examples/deepviewrt_labelimage" doc="readme.md">
+      <description>DeepViewRT LabelImage is as a basic "labelimage" example for using DeepViewRT on an RT106x platform.  The firmware integrates a user defined model with an example provided as well as a user provided image to classify.</description>
+      <board name="EVK-MIMXRT1060" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/deepviewrt_labelimage.uvprojx"/>
+        <environment name="csolution" load="deepviewrt_labelimage.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="deepviewrt_modelrunner" folder="boards/evkmimxrt1060/eiq_examples/deepviewrt_modelrunner" doc="readme.md">
+      <description>DeepViewRT ModelRunner is a dedicated service for hosting and evaluating RTM graphs through a set of RPC protocols, it provides an HTTP REST API for loading an evaluating models. It can work with eIQ toolkit to evaluating and profiling models.</description>
+      <board name="EVK-MIMXRT1060" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/deepviewrt_modelrunner.uvprojx"/>
+        <environment name="csolution" load="deepviewrt_modelrunner.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="deepviewrt_modelrunner-glow" folder="boards/evkmimxrt1060/eiq_examples/deepviewrt_modelrunner-glow" doc="readme.md">
+      <description>DeepViewRT ModelRunner for GLOW</description>
+      <board name="EVK-MIMXRT1060" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/deepviewrt_modelrunner-glow.uvprojx"/>
+        <environment name="csolution" load="deepviewrt_modelrunner-glow.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="tflm_cifar10" folder="boards/evkmimxrt1060/eiq_examples/tflm_cifar10" doc="readme.md">
+      <description>CIFAR-10 example for TensorFlow Lite Micro</description>
+      <board name="EVK-MIMXRT1060" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/tflm_cifar10.uvprojx"/>
+        <environment name="csolution" load="tflm_cifar10.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="tflm_label_image" folder="boards/evkmimxrt1060/eiq_examples/tflm_label_image" doc="readme.md">
+      <description>Label image example for TensorFlow Lite Micro</description>
+      <board name="EVK-MIMXRT1060" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/tflm_label_image.uvprojx"/>
+        <environment name="csolution" load="tflm_label_image.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="tflm_modelrunner" folder="boards/evkmimxrt1060/eiq_examples/tflm_modelrunner" doc="readme.md">
+      <description>ModelRunner for TFlite</description>
+      <board name="EVK-MIMXRT1060" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/tflm_modelrunner.uvprojx"/>
+        <environment name="csolution" load="tflm_modelrunner.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>

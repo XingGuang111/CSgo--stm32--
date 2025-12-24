@@ -1,0 +1,1098 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>AutoChips</vendor>
+  <name>AC7840x_DFP</name>
+  <description>AutoChips AC7840x Series Device Support, Drivers and Examples</description>
+  <url>https://armfileget.autochips.com/CMSIS_PACK/AC7840x/</url>
+  <supportContact>support@autochips.com</supportContact>
+
+  <releases>
+    <release version="3.0.3" date="2023-12-20">
+      Update wdg_hw.h
+	  - Change WDG lock status read function to macro funtion, decrease the excute time after unlock cause it may exceed the configurable time limit of WDG after compile in some compiler like Eclipse.
+	  Update uart_drv.c
+	  - Don't disable FIFO after receiving an error callback
+	  Update ac7840x/startup/debugout_ac7840x.c
+	  - fix arm clang compile error.
+	  Update spi_slave_drv.c
+	  - Because the SRAM L region restricts the use of DMA, the local variables of the buffer are not used when the slave is transmitted
+	  Update can_hw.h can_hw.c
+	  - Fix the problem that the CAN driver causes the STB to send multiple frames
+    </release>
+    <release version="3.0.2" date="2023-11-10">
+      Add EEP module.
+    </release>
+    <release version="3.0.1" date="2023-11-03">
+      ES3 release, SPM add standby mode.
+    </release>
+    <release version="2.0.5" date="2023-09-08">
+      Update inc/uart_drv.h src/uart/uart_drv.c src/uart/uart_hw.h src/uart/uart_hw.c
+      - Add UART interrupt: UART_INT_IDLE_LINE
+      Update src/cse/cse_hw.h
+      - Fix CSE CMAC calculate bug when length more than 112 byte
+    </release>
+    <release version="2.0.4" date="2023-08-09">
+      Update spm_drv.c
+      - Solving the problem of high sleep energy consumption when enabling XOSC+PLL
+      Update AC7840X_P1024KB.FLM
+      - Fix the issue of verification failure when downloading programs using J-Flash
+    </release>
+    <release version="2.0.3" date="2023-06-21">
+      Update ckgen_drv/uart_drv.c
+      - Optimize code
+    </release>
+    <release version="2.0.2" date="2023-06-07">
+      Update eio_drv
+      - Optimize code
+    </release>
+    <release version="2.0.1" date="2023-04-26">
+      Update dma_drv.c
+      - Restrict SRAM only SRAM_U
+      update eio_i2c_drv.c/eio_i2s_drv.c/eio_spi_drv.c/spi_master_drv.c/spi_slave_drv.c/uart_drv.c/adc_drv
+      - Add DMA return value judgment
+    </release>
+    <release version="2.0.0" date="2023-03-29">
+      Optimize some code
+    </release>
+    <release version="1.1.0" date="2023-03-17">
+      Updated uart_drv.c/uart_drv.h file
+      - Optimize uart dma operation code
+      Updated eio_i2s_drv.c/eio_hw.h file
+      - Change some variable names
+      Updated dma_drv.c file
+      - Optimize dma clock operation code
+      update ckgen_drv.c/ckgen_hw.c/uart_hw/eep_drv.c file
+      - Fix IAR build waing and code ruler
+      update pwm_common.c file
+      - Optimize pwm combined mode operation code
+      update spm_drv.c/adc_drv.c/system_ac7840x.h file
+      - remove misa warning
+      update svd file
+      - remove some warning
+    </release>
+    <release version="1.0.2" date="2023-02-21">
+      Updated uart_drv.c/uart_drv.h file
+      - Optimize uart dma operation code
+      Updated eep_drv.c file
+      - Optimize eeprom operation code
+    </release>
+    <release version="1.0.1" date="2023-01-13">
+      Updated eio_i2s_drv/eio_i2c_drv file
+      - Some variable adds eio prefix
+      - Optimize eio i2s operation code
+      Updated flash_drv.c file
+      - Optimize flash operation code
+      Updated spi_master.c file
+      - Used the right clock value
+      Add eep driver code file
+    </release>
+    <release version="1.0.0" date="2022-12-09">
+      First Release version of AC7840x Device Family Pack.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>AutoChips</keyword>
+	<keyword>Device Support</keyword>
+    <keyword>AC7840x</keyword>
+    <keyword>AC784x</keyword>
+    <keyword>AC784</keyword>
+  </keywords>
+
+  <!-- devices section (mandatory for Device Family Packs) -->
+  <devices>
+    <family Dfamily="AC7840x Series" Dvendor="AutoChips:150">
+      <processor  Dcore="Cortex-M4" DcoreVersion="r0p1" Dfpu="1" Dmpu="1" Dendian="Little-endian" Dclock="120000000"/>
+      <description>
+AC7840x product series of 32-bit automotive microcontrollers provides a highly integrated, high-reliability, low-power, safe and secure single-chip solution.
+The AC7840x device family contains an ARM Cortex-M4 processor, running up to 120MHz with a versatile set of on-chip peripherals.
+which cover the needs of a large variety of applications in the Automotive, Industrial and consumer markets.
+Typical applications include motor drives and application control, Pump, Fans, Seat Control, Sunroof and industrial applications.
+Supply Voltage range from 2.7 to 5.5V.
+      </description>
+        <!-- ************************  DebugDeviceUnlock start  **************************** -->
+        <sequences>
+            <sequence name="DebugDeviceUnlock">
+                <block>
+                    __var DAuthUserInput   = 0;
+                    __var DAUTHSTATUS_Val  = 0;
+                    __var DHCSR_Val        = 0;
+                    __var SecureDebugEna   = 0;
+                    __var SecureDebugAvail = 0;
+                    __var DAuthVal         = 0;
+                    __var Status           = 0;  // AP Status value
+                    __var Uid1             = 0;
+                    __var Uid2             = 0;
+                    __var Uid3             = 0;
+                    __var Uid4             = 0;
+                    __var originalAp       = __ap;
+
+                    //WriteDP(0x8, 0x00000000);
+                    //Init AP CSW register
+                    //WriteAP(0x00, 0x23000052);
+                    //WriteAP(0x4, 0x20000000);
+                    //WriteAP(0xC, 0xA5A5A5A5);
+                    //      Read32(0x20000000);
+
+                    __ap = 0x78;
+                    //      ReadAP(0x00);
+                    //      ReadAP(0x04);
+                    //      ReadAP(0x08);
+                    //      ReadAP(0x0C);
+                    //      WriteAP(0x10,0x5a5a5a5a);
+                    //      WriteAP(0x14, 0x12345678);
+
+                    __ap = originalAp;
+
+                    __ap = 1;
+                    WriteAP(0x08,0x00000001);
+                    DAP_Delay(100000);
+                    DAUTHSTATUS_Val = ReadAP(0x00);
+                    SecureDebugAvail = (DAUTHSTATUS_Val &amp; 0x00000001) ? 1 : 0;
+                </block>
+                <control if="SecureDebugAvail == 1">
+                    <block>
+                        __ap = 1;
+                        DAuthUserInput = Query(1, "Enable Secure Debug?", 3);
+                    </block>
+                    <control if="DAuthUserInput == 3">
+                        <block>
+                            WriteAP(0x04,0x00000001);
+                            DAP_Delay(200000);
+                        </block>
+                    </control>
+                    <control if="DAuthUserInput != 3">
+                        <block>
+                            WriteAP(0x04,0x00000000);
+                        </block>
+                    </control>
+                </control>
+
+                <block>
+                    DAUTHSTATUS_Val = ReadAP(0x00);
+                    SecureDebugAvail = (DAUTHSTATUS_Val &amp; 0x00000001) ? 1 : 0;
+                </block>
+                <control if="SecureDebugAvail != 1">
+                    <block>
+                        __ap = originalAp;
+                        Write32(0xE000EDF0, 0xA05F0000 | 0x00000002 | 0x00000001);
+                    </block>
+                </control>
+                <block>
+                    __ap = 1;
+                    WriteAP(0x08,0x00000000);
+                </block>
+            </sequence>
+        </sequences>
+        <!-- ************************  DebugDeviceUnlock end  **************************** -->
+
+        <!-- ************************  Subfamily 'AC7840x'  **************************** -->
+        <subFamily DsubFamily="AC7840x">
+          <compile header="Device/ac7840x/include/ac7840x.h"/>
+          <debug svd="SVD/AC7840x.svd"/>
+          <feature    type="VCC"         n="2.7"     m="5.5"/>
+          <feature    type="RTC"         n="32768"/>
+          <feature    type="UART"        n="4"/>
+          <feature    type="I2C"         n="1"/>
+          <feature    type="SPI"         n="3"/>
+          <feature    type="LIN"         n="4"         name="UART LIN"/>
+          <feature    type="Crypto"      n="1"         name="CSE"/>
+          <feature    type="Temp"        n="-40"     m="125"/>
+          <feature    type="DMA"         n="16"/>
+          <feature    type="Timer"       n="4"       m="32"/>
+          <feature    type="WDT"         n="2"         name="Watchdog"/>
+          <feature    type="TimerOther"                name="EWDG"/>
+          <feature    type="TimerOther"  n="1"         name="Pulse Count Timer"/>
+          <feature    type="TimerOther"  n="1"         name="Programmable Delay Timer"/>
+          <feature    type="AnalogOther" n="1"         name="Analog Comparator"/>
+          <feature    type="Other"       n="1"         name="eIO"/>
+
+          <!-- *************************  Device 'AC78409YGLA'  ***************************** -->
+          <device Dname="AC78409YGLA">
+            <feature    type="IOs"         n="128"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="48"/>
+            <feature    type="ADC"         n="48"/>
+            <feature    type="QFP"         n="144"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="6"      name="RUN, STOP1, STOP2, VLPR, VLPS, Standby"/>
+            <feature    type="Other"                  name="ISELED"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00100000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78409LGLA'  ***************************** -->
+          <device Dname="AC78409LGLA">
+            <feature    type="IOs"         n="89"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="39"/>
+            <feature    type="ADC"         n="32"/>
+            <feature    type="QFP"         n="100"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="6"      name="RUN, STOP1, STOP2, VLPR, VLPS, Standby"/>
+            <feature    type="Other"                  name="ISELED"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00100000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78409HGLA'  ***************************** -->
+          <device Dname="AC78409HGLA">
+            <feature    type="IOs"         n="58"/>
+            <feature    type="CAN"         n="3"/>
+            <feature    type="PWM"         n="36"/>
+            <feature    type="ADC"         n="29"/>
+            <feature    type="QFP"         n="64"     name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="6"      name="RUN, STOP1, STOP2, VLPR, VLPS, Standby"/>
+            <feature    type="Other"                  name="ISELED"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00100000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78409LFLA'  ***************************** -->
+          <device Dname="AC78409LFLA">
+            <feature    type="IOs"         n="89"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="39"/>
+            <feature    type="ADC"         n="32"/>
+            <feature    type="QFP"         n="100"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="6"      name="RUN, STOP1, STOP2, VLPR, VLPS, Standby"/>
+            <feature    type="Other"                  name="ISELED"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00080000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78409HFLA'  ***************************** -->
+          <device Dname="AC78409HFLA">
+            <feature    type="IOs"         n="58"/>
+            <feature    type="CAN"         n="3"/>
+            <feature    type="PWM"         n="36"/>
+            <feature    type="ADC"         n="29"/>
+            <feature    type="QFP"         n="64"     name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="6"      name="RUN, STOP1, STOP2, VLPR, VLPS, Standby"/>
+            <feature    type="Other"                  name="ISELED"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00080000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78408YGLA'  ***************************** -->
+          <device Dname="AC78408YGLA">
+            <feature    type="IOs"         n="128"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="48"/>
+            <feature    type="ADC"         n="48"/>
+            <feature    type="QFP"         n="144"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="6"      name="RUN, STOP1, STOP2, VLPR, VLPS, Standby"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00100000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78408LGLA'  ***************************** -->
+          <device Dname="AC78408LGLA">
+            <feature    type="IOs"         n="89"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="39"/>
+            <feature    type="ADC"         n="32"/>
+            <feature    type="QFP"         n="100"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="6"      name="RUN, STOP1, STOP2, VLPR, VLPS, Standby"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00100000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78408HGLA'  ***************************** -->
+          <device Dname="AC78408HGLA">
+            <feature    type="IOs"         n="58"/>
+            <feature    type="CAN"         n="3"/>
+            <feature    type="PWM"         n="36"/>
+            <feature    type="ADC"         n="29"/>
+            <feature    type="QFP"         n="64"     name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="6"      name="RUN, STOP1, STOP2, VLPR, VLPS, Standby"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00100000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78408YFLA'  ***************************** -->
+          <device Dname="AC78408YFLA">
+            <feature    type="IOs"         n="128"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="48"/>
+            <feature    type="ADC"         n="48"/>
+            <feature    type="QFP"         n="144"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="6"      name="RUN, STOP1, STOP2, VLPR, VLPS, Standby"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00080000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78408LFLA'  ***************************** -->
+          <device Dname="AC78408LFLA">
+            <feature    type="IOs"         n="89"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="39"/>
+            <feature    type="ADC"         n="32"/>
+            <feature    type="QFP"         n="100"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="6"      name="RUN, STOP1, STOP2, VLPR, VLPS, Standby"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00080000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78408HFLA'  ***************************** -->
+          <device Dname="AC78408HFLA">
+            <feature    type="IOs"         n="58"/>
+            <feature    type="CAN"         n="3"/>
+            <feature    type="PWM"         n="36"/>
+            <feature    type="ADC"         n="29"/>
+            <feature    type="QFP"         n="64"     name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="6"      name="RUN, STOP1, STOP2, VLPR, VLPS, Standby"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00080000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78407YGLA'  ***************************** -->
+          <device Dname="AC78407YGLA">
+            <feature    type="IOs"         n="128"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="48"/>
+            <feature    type="ADC"         n="48"/>
+            <feature    type="QFP"         n="144"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="5"      name="RUN, STOP1, STOP2, VLPR, VLPS"/>
+            <feature    type="Other"                  name="ISELED"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00100000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78407LGLA'  ***************************** -->
+          <device Dname="AC78407LGLA">
+            <feature    type="IOs"         n="89"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="39"/>
+            <feature    type="ADC"         n="32"/>
+            <feature    type="QFP"         n="100"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="5"      name="RUN, STOP1, STOP2, VLPR, VLPS"/>
+            <feature    type="Other"                  name="ISELED"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00100000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78407HGLA'  ***************************** -->
+          <device Dname="AC78407HGLA">
+            <feature    type="IOs"         n="58"/>
+            <feature    type="CAN"         n="3"/>
+            <feature    type="PWM"         n="36"/>
+            <feature    type="ADC"         n="29"/>
+            <feature    type="QFP"         n="64"     name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="5"      name="RUN, STOP1, STOP2, VLPR, VLPS"/>
+            <feature    type="Other"                  name="ISELED"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00100000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78407LFLA'  ***************************** -->
+          <device Dname="AC78407LFLA">
+            <feature    type="IOs"         n="89"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="39"/>
+            <feature    type="ADC"         n="32"/>
+            <feature    type="QFP"         n="100"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="5"      name="RUN, STOP1, STOP2, VLPR, VLPS"/>
+            <feature    type="Other"                  name="ISELED"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00080000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78407HFLA'  ***************************** -->
+          <device Dname="AC78407HFLA">
+            <feature    type="IOs"         n="58"/>
+            <feature    type="CAN"         n="3"/>
+            <feature    type="PWM"         n="36"/>
+            <feature    type="ADC"         n="29"/>
+            <feature    type="QFP"         n="64"     name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="5"      name="RUN, STOP1, STOP2, VLPR, VLPS"/>
+            <feature    type="Other"                  name="ISELED"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00080000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78406YGLA'  ***************************** -->
+          <device Dname="AC78406YGLA">
+            <feature    type="IOs"         n="128"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="48"/>
+            <feature    type="ADC"         n="48"/>
+            <feature    type="QFP"         n="144"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="5"    name="RUN, STOP1, STOP2, VLPR, VLPS"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00100000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78406LGLA'  ***************************** -->
+          <device Dname="AC78406LGLA">
+            <feature    type="IOs"         n="89"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="39"/>
+            <feature    type="ADC"         n="32"/>
+            <feature    type="QFP"         n="100"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="5"    name="RUN, STOP1, STOP2, VLPR, VLPS"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00100000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78406HGLA'  ***************************** -->
+          <device Dname="AC78406HGLA">
+            <feature    type="IOs"         n="58"/>
+            <feature    type="CAN"         n="3"/>
+            <feature    type="PWM"         n="36"/>
+            <feature    type="ADC"         n="29"/>
+            <feature    type="QFP"         n="64"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="5"    name="RUN, STOP1, STOP2, VLPR, VLPS"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00100000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78406YFLA'  ***************************** -->
+          <device Dname="AC78406YFLA">
+            <feature    type="IOs"         n="128"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="48"/>
+            <feature    type="ADC"         n="48"/>
+            <feature    type="QFP"         n="144"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="5"    name="RUN, STOP1, STOP2, VLPR, VLPS"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00080000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78406LFLA'  ***************************** -->
+          <device Dname="AC78406LFLA">
+            <feature    type="IOs"         n="89"/>
+            <feature    type="CAN"         n="4"/>
+            <feature    type="PWM"         n="39"/>
+            <feature    type="ADC"         n="32"/>
+            <feature    type="QFP"         n="100"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="5"    name="RUN, STOP1, STOP2, VLPR, VLPS"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00080000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+
+          <!-- *************************  Device 'AC78406HFLA'  ***************************** -->
+          <device Dname="AC78406HFLA">
+            <feature    type="IOs"         n="58"/>
+            <feature    type="CAN"         n="3"/>
+            <feature    type="PWM"         n="36"/>
+            <feature    type="ADC"         n="29"/>
+            <feature    type="QFP"         n="64"    name="Low-Profile QFP Package"/>
+            <feature    type="PowerMode"   n="5"    name="RUN, STOP1, STOP2, VLPR, VLPS"/>
+            <memory     id="IROM1"                        start="0x00000000"  size="0x00080000"  startup="1"     default="1"/>
+            <memory     id="IRAM1"                        start="0x1FFF0000"  size="0x00010000"  init ="0"       default="1"/>
+            <memory     id="IRAM2"                        start="0x20000000"  size="0x0000F000"  init ="0"       default="1"/>
+            <algorithm  name="Flash/AC7840X_P1024KB.FLM"  start="0x00000000"  size="0x00100000"  default="1"/>
+          </device>
+        </subFamily>
+    </family>
+  </devices>
+
+  <!-- conditions section (optional for all Software Packs)-->
+  <conditions>
+    <condition id="AC7840x CMSIS-CORE">
+      <!-- conditions selecting Devices -->
+      <description>AutoChips AC784x Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="AutoChips:150" Dname="AC7840[6789]*"/>
+      <require Dfamily="AC7840x Series"/>
+      <require Tcompiler="ARMCC"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="CKGEN"/>
+    </condition>
+
+
+	<condition id="AC7840x System">
+      <description>AutoChips AC784x System</description>
+		  <require condition="AC7840x CMSIS-CORE"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="CKGEN"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+
+    <condition id="AC7840x UART Driver Require">
+      <description>AutoChips AC784x UART Driver</description>
+          <require condition="AC7840x System"/>
+      <require Cclass="Device" Cgroup="ATC OSIF" Csub="OSIF"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="DMA"/>
+    </condition>
+
+    <condition id="AC7840x CKGEN Driver Require">
+      <description>AutoChips AC784x RCM Driver</description>
+		  <require condition="AC7840x System"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="RCM"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="SPM"/>
+    </condition>
+
+    <condition id="AC7840x FLASH Require">
+      <!-- conditions selecting Devices -->
+      <description>AutoChips AC784x Series FLASH Require</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="AutoChips:150" Dname="AC7840[6789]*"/>
+      <require Dfamily="AC7840x Series"/>
+      <require Tcompiler="ARMCC"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+
+    <condition id="AC7840x Debug Interface">
+      <description>AutoChips AC784x Development Kit Debug Interface</description>
+      <require condition="AC7840x System"/>
+	  <require Cclass="Device" Cgroup="ATC Drivers" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="UART"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+
+    <condition id="AC7840x EIO Driver Require">
+      <description>AutoChips AC784x EIO Driver</description>
+      <require condition="AC7840x System"/>
+      <require Cclass="Device" Cgroup="ATC OSIF"    Csub="OSIF"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="DMA"/>
+    </condition>
+
+    <condition id="AC7840x I2C Driver Require">
+      <description>AutoChips AC784x I2C Driver</description>
+      <require condition="AC7840x System"/>
+      <require Cclass="Device" Cgroup="ATC OSIF"    Csub="OSIF"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="DMA"/>
+    </condition>
+
+    <condition id="AC7840x LIN Driver Require">
+      <description>AutoChips AC784x LIN Driver</description>
+      <require condition="AC7840x System"/>
+      <require Cclass="Device" Cgroup="ATC OSIF"    Csub="OSIF"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="UART"/>
+    </condition>
+
+    <condition id="AC7840x SPI Driver Require">
+      <description>AutoChips AC784x SPI Driver</description>
+      <require condition="AC7840x System"/>
+      <require Cclass="Device" Cgroup="ATC OSIF"    Csub="OSIF"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="DMA"/>
+    </condition>
+
+    <condition id="AC7840x CSE Driver Require">
+      <description>AutoChips AC784x CSE Driver</description>
+      <require condition="AC7840x System"/>
+      <require Cclass="Device" Cgroup="ATC OSIF"    Csub="OSIF"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="CSE"/>
+    </condition>
+
+
+  </conditions>
+
+  <!-- component section (optional for all Software Packs)-->
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="AC7840x CMSIS-CORE">
+      <RTE_Components_h>
+        <!-- the following content goes into file 'RTE_Components.h' -->
+        #define RTE_DEVICE_STARTUP_AC7840x
+      </RTE_Components_h>
+      <description>System Startup for AutoChips AC7840x Series</description>
+      <files>
+        <!-- startup files -->
+        <file category="sourceAsm"  name="Device/ac7840x/startup/armc/startup_ac7840x.s" attr="config" version="1.0.0"/>
+        <!-- system file -->
+        <file category="header"  name="Device/ac7840x/include/ac7840x.h"                              version="1.0.0"/>
+        <file category="source"  name="Device/ac7840x/startup/system_ac7840x.c"         attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/ac7840x/startup/system_ac7840x.h"         attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/ac7840x/include/ac7840x_features.h"       attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/device_assert.h"                          attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/device_register.h"                        attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/device_status.h"                          attr="config" version="1.0.0"/>
+        <!-- <file category="header"  name="Device/common/AC784x_core_cm4.h"                 attr="config" version="1.0.0"/> -->
+      </files>
+    </component>
+
+     <!-- START: AutoChips AC784x Peripherals Drivers -->
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="ACMP" Cversion="1.0.0" condition="AC7840x System">
+      <description>Analog-Comparator (ACMP) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_ACMP
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Driver/inc/acmp_drv.h"/>
+        <file category="header" name="Driver/src/acmp/acmp_hw.h"/>
+        <file category="source" name="Driver/src/acmp/acmp_drv.c"/>
+		<file category="source" name="Driver/src/acmp/acmp_hw.c"/>
+		<file category="source" name="Driver/src/acmp/acmp_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="ADC" Cversion="1.0.0" condition="AC7840x System">
+      <description>Analog-to-digital converter (ADC) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_ADC
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/adc_drv.h"/>
+		<file category="header" name="Driver/src/adc/adc_hw.h"/>
+		<file category="source" name="Driver/src/adc/adc_drv.c"/>
+		<file category="source" name="Driver/src/adc/adc_hw.c"/>
+		<file category="source" name="Driver/src/adc/adc_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="CAN" Cversion="1.0.0" condition="AC7840x System">
+      <description>Controller area network (CAN) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CAN
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/can_drv.h"/>
+		<file category="header" name="Driver/src/can/can_hw.h"/>
+		<file category="source" name="Driver/src/can/can_drv.c"/>
+		<file category="source" name="Driver/src/can/can_hw.c"/>
+		<file category="source" name="Driver/src/can/can_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="CKGEN" Cversion="1.0.0" condition="AC7840x CKGEN Driver Require">
+      <description>Clock generator (CKGEN) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CKGEN
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/ckgen_drv.h"/>
+		<file category="header" name="Driver/src/ckgen/ckgen_hw.h"/>
+		<file category="source" name="Driver/src/ckgen/ckgen_drv.c"/>
+		<file category="source" name="Driver/src/ckgen/ckgen_hw.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="CMU" Cversion="1.0.0" condition="AC7840x System">
+      <description>Clock monitor unit (CMU) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CMU
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/cmu_drv.h"/>
+		<file category="header" name="Driver/src/cmu/cmu_hw.h"/>
+		<file category="source" name="Driver/src/cmu/cmu_drv.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="CRC" Cversion="1.0.0" condition="AC7840x System">
+      <description>Cyclic redundancy check (CRC) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CRC
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/crc_drv.h"/>
+		<file category="header" name="Driver/src/crc/crc_hw.h"/>
+		<file category="source" name="Driver/src/crc/crc_drv.c"/>
+		<file category="source" name="Driver/src/crc/crc_hw.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="CSE" Cversion="1.0.0" condition="AC7840x CSE Driver Require">
+      <description>Cryptographic service engine (CSE) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CSE
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/cse_drv.h"/>
+		<file category="header" name="Driver/src/cse/cse_hw.h"/>
+		<file category="source" name="Driver/src/cse/cse_drv.c"/>
+		<file category="source" name="Driver/src/cse/cse_hw.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="CTU" Cversion="1.0.0" condition="AC7840x System">
+      <description>Connection unit (CTU) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CTU
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/ctu_drv.h"/>
+		<file category="header" name="Driver/src/ctu/ctu_hw.h"/>
+		<file category="source" name="Driver/src/ctu/ctu_drv.c"/>
+		<file category="source" name="Driver/src/ctu/ctu_hw.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="DMA" Cversion="1.0.0" condition="AC7840x System">
+      <description>Direct memory access (DMA) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_DMA
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/dma_drv.h"/>
+		<file category="header" name="Driver/src/dma/dma_hw.h"/>
+		<file category="source" name="Driver/src/dma/dma_drv.c"/>
+		<file category="source" name="Driver/src/dma/dma_hw.c"/>
+		<file category="source" name="Driver/src/dma/dma_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="EIM" Cversion="1.0.0" condition="AC7840x System">
+      <description>Error injection module(EIM) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_ECC_EIM
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/eim_drv.h"/>
+		<file category="header" name="Driver/src/eim/eim_hw.h"/>
+		<file category="source" name="Driver/src/eim/eim_drv.c"/>
+		<file category="source" name="Driver/src/eim/eim_hw.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="EIO" Cversion="1.0.0" condition="AC7840x EIO Driver Require">
+      <description>Enhanced input and output (EIO) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_EIO
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/eio.h"/>
+		<file category="header" name="Driver/src/eio/eio_hw.h"/>
+		<file category="header" name="Driver/src/eio/eio_comm.h"/>
+		<file category="source" name="Driver/src/eio/eio_comm.c"/>
+		<file category="source" name="Driver/src/eio/eio_i2c_drv.c"/>
+		<file category="source" name="Driver/src/eio/eio_i2s_drv.c"/>
+		<file category="source" name="Driver/src/eio/eio_spi_drv.c"/>
+		<file category="source" name="Driver/src/eio/eio_uart_drv.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="EWDG" Cversion="1.0.0" condition="AC7840x System">
+      <description>External watchdog (EWDG) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_EWDG
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/ewdg_drv.h"/>
+		<file category="header" name="Driver/src/ewdg/ewdg_hw.h"/>
+		<file category="source" name="Driver/src/ewdg/ewdg_drv.c"/>
+		<file category="source" name="Driver/src/ewdg/ewdg_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="EFLASH" Cversion="1.0.0" condition="AC7840x FLASH Require">
+      <description>Embedded Flash memory (eFlash) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_EFLASH
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/flash_drv.h"/>
+		<file category="header" name="Driver/src/flash/flash_hw.h"/>
+		<file category="source" name="Driver/src/flash/flash_drv.c"/>
+		<file category="source" name="Driver/src/flash/flash_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="GPIO" Cversion="1.0.0" condition="AC7840x System">
+      <description>General-purpose I/O (GPIO) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_GPIO
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/gpio_drv.h"/>
+		<file category="header" name="Driver/src/gpio/gpio_hw.h"/>
+		<file category="header" name="Driver/src/gpio/port_hw.h"/>
+		<file category="source" name="Driver/src/gpio/gpio_drv.c"/>
+		<file category="source" name="Driver/src/gpio/port_hw.c"/>
+		<file category="source" name="Driver/src/gpio/gpio_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="I2C" Cversion="1.0.0" condition="AC7840x I2C Driver Require">
+      <description>Inter-integrated circuit (I2C) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_I2C
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/i2c_drv.h"/>
+		<file category="header" name="Driver/src/i2c/i2c_hw.h"/>
+		<file category="source" name="Driver/src/i2c/i2c_drv.c"/>
+		<file category="source" name="Driver/src/i2c/i2c_hw.c"/>
+		<file category="source" name="Driver/src/i2c/i2c_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="LIN" Cversion="1.0.0" condition="AC7840x LIN Driver Require">
+      <description>Local interconnect network (LIN) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_LIN
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/lin_drv.h"/>
+		<file category="source" name="Driver/src/lin/lin_drv.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="MPU" Cversion="1.0.0" condition="AC7840x System">
+      <description>Memory protect unit (MPU) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_MPU
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/mpu_drv.h"/>
+		<file category="header" name="Driver/src/mpu/mpu_hw.h"/>
+		<file category="source" name="Driver/src/mpu/mpu_drv.c"/>
+		<file category="source" name="Driver/src/mpu/mpu_hw.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="PBR" Cversion="1.0.0" condition="AC7840x System">
+      <description>Peripheral bridge (PBR) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_PBR
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/pbr_drv.h"/>
+		<file category="header" name="Driver/src/pbr/pbr_hw.h"/>
+		<file category="source" name="Driver/src/pbr/pbr_drv.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="PCT" Cversion="1.0.0" condition="AC7840x System">
+      <description>Pulse counting timer (PCT) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_PCT
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/pct_drv.h"/>
+		<file category="header" name="Driver/src/pct/pct_hw.h"/>
+		<file category="source" name="Driver/src/pct/pct_drv.c"/>
+		<file category="source" name="Driver/src/pct/pct_hw.c"/>
+		<file category="source" name="Driver/src/pct/pct_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="PDT" Cversion="1.0.0" condition="AC7840x System">
+      <description>Programmable delay timer (PDT) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_PDT
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/pdt_drv.h"/>
+		<file category="header" name="Driver/src/pdt/pdt_hw.h"/>
+		<file category="source" name="Driver/src/pdt/pdt_drv.c"/>
+		<file category="source" name="Driver/src/pdt/pdt_hw.c"/>
+		<file category="source" name="Driver/src/pdt/pdt_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="PWM" Cversion="1.0.0" condition="AC7840x System">
+      <description>Pulse Width Modulation (PWM) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_PWM
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/pwm_common.h"/>
+		<file category="header" name="Driver/inc/pwm_input.h"/>
+		<file category="header" name="Driver/inc/pwm_output.h"/>
+		<file category="header" name="Driver/src/pwm/pwm_hw.h"/>
+		<file category="source" name="Driver/src/pwm/pwm_common.c"/>
+		<file category="source" name="Driver/src/pwm/pwm_hw.c"/>
+		<file category="source" name="Driver/src/pwm/pwm_input.c"/>
+		<file category="source" name="Driver/src/pwm/pwm_output.c"/>
+		<file category="source" name="Driver/src/pwm/pwm_irq.c"/>
+      </files>
+    </component>
+
+	<component Cclass="Device" Cgroup="ATC Drivers" Csub="RCM" Cversion="1.0.0" condition="AC7840x System">
+      <description>Reset control module(RCM) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_RCM
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/rcm_drv.h"/>
+		<file category="header" name="Driver/src/rcm/rcm_hw.h"/>
+		<file category="source" name="Driver/src/rcm/rcm_drv.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="RTC" Cversion="1.0.0" condition="AC7840x System">
+      <description>Real-time clock (RTC) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_RTC
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/rtc_drv.h"/>
+		<file category="header" name="Driver/src/rtc/rtc_hw.h"/>
+		<file category="source" name="Driver/src/rtc/rtc_drv.c"/>
+		<file category="source" name="Driver/src/rtc/rtc_hw.c"/>
+		<file category="source" name="Driver/src/rtc/rtc_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="SMU" Cversion="1.0.0" condition="AC7840x System">
+      <description>Safety management unit(SMU) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_SMU
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/smu_drv.h"/>
+		<file category="header" name="Driver/src/smu/smu_hw.h"/>
+		<file category="source" name="Driver/src/smu/smu_drv.c"/>
+		<file category="source" name="Driver/src/smu/smu_hw.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="SPI" Cversion="1.0.0" condition="AC7840x SPI Driver Require">
+      <description>Serial peripheral interface (SPI) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_SPI
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/spi_master_drv.h"/>
+		<file category="header" name="Driver/inc/spi_shared_function.h"/>
+		<file category="header" name="Driver/inc/spi_slave_drv.h"/>
+		<file category="header" name="Driver/src/spi/spi_hw.h"/>
+		<file category="source" name="Driver/src/spi/spi_irq.c"/>
+		<file category="source" name="Driver/src/spi/spi_hw.c"/>
+		<file category="source" name="Driver/src/spi/spi_master_drv.c"/>
+		<file category="source" name="Driver/src/spi/spi_shared_function.c"/>
+		<file category="source" name="Driver/src/spi/spi_slave_drv.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="SPM" Cversion="1.0.0" condition="AC7840x System">
+      <description>System power management (SPM) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_SPM
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/spm_drv.h"/>
+		<file category="header" name="Driver/src/spm/spm_hw.h"/>
+		<file category="source" name="Driver/src/spm/spm_drv.c"/>
+		<file category="source" name="Driver/src/spm/spm_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="SRAM" Cversion="1.0.0" condition="AC7840x System">
+      <description>Static random-access memory (SRAM) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_SRAM
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/sram_drv.h"/>
+		<file category="header" name="Driver/src/sram/sram_hw.h"/>
+		<file category="source" name="Driver/src/sram/sram_drv.c"/>
+		<file category="source" name="Driver/src/sram/sram_hw.c"/>
+		<file category="source" name="Driver/src/sram/sram_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="TIMER" Cversion="1.0.0" condition="AC7840x System">
+      <description>Timer (TIMER) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_TIMER
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/timer_drv.h"/>
+		<file category="header" name="Driver/src/timer/timer_hw.h"/>
+		<file category="source" name="Driver/src/timer/timer_drv.c"/>
+		<file category="source" name="Driver/src/timer/timer_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="UART" Cversion="1.0.0" condition="AC7840x UART Driver Require">
+      <description>Universal asynchronous receiver transmitter (UART) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_UART
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/uart_drv.h"/>
+		<file category="header" name="Driver/src/uart/uart_hw.h"/>
+		<file category="header" name="Driver/src/uart/uart_irq.h"/>
+		<file category="source" name="Driver/src/uart/uart_drv.c"/>
+		<file category="source" name="Driver/src/uart/uart_hw.c"/>
+		<file category="source" name="Driver/src/uart/uart_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="WDG" Cversion="1.0.0" condition="AC7840x System">
+      <description>Watchdog (WDG) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_WDG
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Driver/inc/wdg_drv.h"/>
+		<file category="header" name="Driver/src/wdg/wdg_hw.h"/>
+		<file category="source" name="Driver/src/wdg/wdg_drv.c"/>
+		<file category="source" name="Driver/src/wdg/wdg_hw.c"/>
+		<file category="source" name="Driver/src/wdg/wdg_irq.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="EEP" Cversion="1.0.0" condition="AC7840x System">
+      <description>EEPROM (EEP) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_EEP
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="Driver/inc/eep_drv.h"/>
+        <file category="source" name="Driver/src/eep/eep_drv.lib"/>
+      </files>
+    </component>
+    <!-- END: AutoChips AC784x Peripherals Drivers -->
+
+    <component Cclass="Device" Cgroup="ATC OSIF" Csub="OSIF" Cvariant="Bare Metal" Cversion="1.0.0" condition="AC7840x System">
+      <description>Bare Metal Abstraction Layer(no RTOS)</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_OSIF
+      </RTE_Components_h>
+      <files>
+		<file category="header" name="Rtos/osif/osif.h"/>
+		<file category="source" name="Rtos/osif/osif_baremetal.c"/>
+      </files>
+    </component>
+
+    <!-- AutoChips AC784x Development Board -->
+    <bundle Cbundle="AC7840x Development Kit" Cclass="Board Support" Cversion="1.0.0">
+      <description>AutoChips AC784x Development Board </description>
+      <doc></doc>
+      <component Cgroup="AC7840x Development Kit" Csub="Debug" Cvariant="AC7840x Development Kit" condition="AC7840x Debug Interface">
+        <description>Debug Interface for AutoChips AC784x Development Board</description>
+        <files>
+          <file category="header" name="Device/ac7840x/startup/debugout_ac7840x.h"/>
+          <file category="source" name="Device/ac7840x/startup/debugout_ac7840x.c" attr="config" version="1.0.0"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+
+</package>
+

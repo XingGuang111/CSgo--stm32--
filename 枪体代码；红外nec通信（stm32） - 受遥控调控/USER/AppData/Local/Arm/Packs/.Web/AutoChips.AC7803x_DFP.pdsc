@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<package schemaVersion="1.4" xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd">
+  <vendor>AutoChips</vendor>
+  <name>AC7803x_DFP</name>
+  <description>AutoChips AC7803x Series Device Support and Examples</description>
+  <url>https://armfileget.autochips.com/CMSIS_PACK/AC7803x/</url>
+  <supportContact>support@autochips.com</supportContact>
+
+  <releases>
+    <release version="1.0.1" date="2023-11-28">
+      Update ac780x_eio_spi_drv.c
+	  - [EIO]Fixed the error when transfer 2 bytes in SPI DMA mode.
+	  Update ac780x_rtc.h / ac780x_rtc_reg.h / ac780x_rtc.c / ac7803x.h
+	  - [RTC]Modify unreasonable naming
+    </release>
+    <release version="1.0.0" date="2023-08-15">
+      Initial version.
+    </release>
+  </releases>
+
+  <keywords>
+    <!-- keywords for indexing -->
+    <keyword>AutoChips</keyword>
+    <keyword>AC7803x</keyword>
+    <keyword>AC7803</keyword>
+  </keywords>
+
+<!-- devices section (mandatory for Device Family Packs) -->
+<devices>
+<family Dfamily="AC7803x Series" Dvendor="AutoChips:150">
+    <processor  Dcore="Cortex-M0+" DcoreVersion="r2p1" Dfpu="0" Dmpu="1" Dendian="Little-endian" Dclock="64000000"/>
+    <compile    header="Device/Include/ac7803x.h"/>
+    <debug      svd="SVD/AC7803x.svd"/>
+    <description>
+The ac7803x product series of 32-bit automotive microcontrollers provides a highly integrated, high-reliability, low-power,
+safe and secure single-chip solution.
+The ac7803x device family contains an ARM Cortex-M0+ processor, running up to 64MHz with a versatile set of on-chip peripherals.
+which cover the needs of a large variety of applications in the Automotive, Industrial and consumer markets.
+Typical applications include motor drives and application control, BCM, Pump, Fans, Seat Control, Sunroof and industrial applications.
+Supply Voltage range from 2.7 to 5.5V
+    </description>
+    <feature    type="VCC"     n="2.7"     m="5.5"/>
+    <feature    type="RTC"     n="32768"/>
+    <feature    type="WDT"     n="1"       name="Watchdog"/>
+    <feature    type="CAN"     n="2"/>
+    <feature    type="SPI"     n="2"/>
+    <feature    type="I2C"     n="2"/>
+    <feature    type="Timer"   n="4"       m="32"/>
+    <feature    type="PWM"         n="1"     m="8"/>
+    <feature    type="PWM"         n="2"     m="4"/>
+<!-- ************************  Subfamily 'AC7803'  **************************** -->
+    <subFamily DsubFamily="AC7803">
+        <feature    type="Temp"    n="-40"     m="125"     name="Operating Temperature Range"/>
+<!-- *************************  Device 'AC78036HFLA'  ***************************** -->
+		<device Dname="AC78036HFLA">
+          <feature    type="IOs"         n="58"/>
+          <feature    type="UART"        n="3"/>
+          <feature    type="ComOther"    n="3"      name="UART LIN"/>
+          <feature    type="TimerOther"  n="2"      name="Pulse width detection timer"/>
+          <feature    type="ADC"         n="16"     m="12"/>
+          <feature    type="AnalogOther" n="1"      name="Analog comparator"/>
+          <feature    type="QFP"         n="64"     name="Low-Profile QFP Package"/>
+          <feature    type="Temp"        n="-40"    m="125"/>
+          <memory     id="IROM1"  start="0x08000000"  size="0x40000"    startup="1"     default="1"/>
+          <memory     id="IRAM1"  start="0x20000000"  size="0x10000"     init ="0"       default="1"/>
+          <algorithm  name="Flash/AC7803x_PD256KB.FLM"  start="0x08000000"  size="0x00080000"   default="1"/>
+        </device>
+<!-- *************************  Device 'AC78036FFLA'  ***************************** -->
+		<device Dname="AC78036FFLA">
+          <feature    type="IOs"         n="42"/>
+          <feature    type="UART"        n="3"/>
+          <feature    type="ComOther"    n="3"      name="UART LIN"/>
+          <feature    type="TimerOther"  n="2"      name="Pulse width detection timer"/>
+          <feature    type="ADC"         n="16"     m="12"/>
+          <feature    type="AnalogOther" n="1"      name="Analog comparator"/>
+          <feature    type="QFP"         n="48"     name="Low-Profile QFP Package"/>
+          <feature    type="Temp"        n="-40"    m="125"/>
+          <memory     id="IROM1"  start="0x08000000"  size="0x40000"    startup="1"     default="1"/>
+          <memory     id="IRAM1"  start="0x20000000"  size="0x10000"     init ="0"       default="1"/>
+          <algorithm  name="Flash/AC7803x_PD256KB.FLM"  start="0x08000000"  size="0x00080000"   default="1"/>
+        </device>
+<!-- *************************  Device 'AC78036HELA'  ***************************** -->
+		<device Dname="AC78036HELA">
+          <feature    type="IOs"         n="58"/>
+          <feature    type="UART"        n="3"/>
+          <feature    type="ComOther"    n="3"      name="UART LIN"/>
+          <feature    type="TimerOther"  n="2"      name="Pulse width detection timer"/>
+          <feature    type="ADC"         n="16"     m="12"/>
+          <feature    type="AnalogOther" n="1"      name="Analog comparator"/>
+          <feature    type="QFP"         n="64"     name="Low-Profile QFP Package"/>
+          <feature    type="Temp"        n="-40"    m="125"/>
+          <memory     id="IROM1"  start="0x08000000"  size="0x40000"    startup="1"     default="1"/>
+          <memory     id="IRAM1"  start="0x20000000"  size="0x10000"     init ="0"       default="1"/>
+          <algorithm  name="Flash/AC7803x_PD256KB.FLM"  start="0x08000000"  size="0x00080000"   default="1"/>
+        </device>
+<!-- *************************  Device 'AC78036FELA'  ***************************** -->
+		<device Dname="AC78036FELA">
+          <feature    type="IOs"         n="42"/>
+          <feature    type="UART"        n="3"/>
+          <feature    type="ComOther"    n="3"      name="UART LIN"/>
+          <feature    type="TimerOther"  n="2"      name="Pulse width detection timer"/>
+          <feature    type="ADC"         n="16"     m="12"/>
+          <feature    type="AnalogOther" n="1"      name="Analog comparator"/>
+          <feature    type="QFP"         n="48"     name="Low-Profile QFP Package"/>
+          <feature    type="Temp"        n="-40"    m="125"/>
+          <memory     id="IROM1"  start="0x08000000"  size="0x40000"    startup="1"     default="1"/>
+          <memory     id="IRAM1"  start="0x20000000"  size="0x10000"     init ="0"       default="1"/>
+          <algorithm  name="Flash/AC7803x_PD256KB.FLM"  start="0x08000000"  size="0x00080000"   default="1"/>
+        </device>
+<!-- *************************  Device 'AC78036HDLA'  ***************************** -->
+		<device Dname="AC78036HDLA">
+          <feature    type="IOs"         n="58"/>
+          <feature    type="UART"        n="3"/>
+          <feature    type="ComOther"    n="3"      name="UART LIN"/>
+          <feature    type="TimerOther"  n="2"      name="Pulse width detection timer"/>
+          <feature    type="ADC"         n="16"     m="12"/>
+          <feature    type="AnalogOther" n="1"      name="Analog comparator"/>
+          <feature    type="QFP"         n="64"     name="Low-Profile QFP Package"/>
+          <feature    type="Temp"        n="-40"    m="125"/>
+          <memory     id="IROM1"  start="0x08000000"  size="0x40000"    startup="1"     default="1"/>
+          <memory     id="IRAM1"  start="0x20000000"  size="0x10000"     init ="0"       default="1"/>
+          <algorithm  name="Flash/AC7803x_PD256KB.FLM"  start="0x08000000"  size="0x00080000"   default="1"/>
+        </device>
+<!-- *************************  Device 'AC78036FDLA'  ***************************** -->
+		<device Dname="AC78036FDLA">
+          <feature    type="IOs"         n="42"/>
+          <feature    type="UART"        n="3"/>
+          <feature    type="ComOther"    n="3"      name="UART LIN"/>
+          <feature    type="TimerOther"  n="2"      name="Pulse width detection timer"/>
+          <feature    type="ADC"         n="12"     m="12"/>
+          <feature    type="AnalogOther" n="1"      name="Analog comparator"/>
+          <feature    type="QFP"         n="48"     name="Low-Profile QFP Package"/>
+          <feature    type="Temp"        n="-40"    m="125"/>
+          <memory     id="IROM1"  start="0x08000000"  size="0x40000"    startup="1"     default="1"/>
+          <memory     id="IRAM1"  start="0x20000000"  size="0x10000"     init ="0"       default="1"/>
+          <algorithm  name="Flash/AC7803x_PD256KB.FLM"  start="0x08000000"  size="0x00080000"   default="1"/>
+        </device>
+    </subFamily>
+</family>
+</devices>
+
+  <!-- conditions section (optional for all Software Packs)-->
+  <conditions>
+    <condition id="AC7803x CMSIS-CORE">
+      <!-- conditions selecting Devices -->
+      <description>AutoChips AC7803x Series devices and CMSIS-CORE</description>
+      <require Cclass="CMSIS" Cgroup="CORE"/>
+      <require Dvendor="AutoChips:150" Dname="AC7803*"/>
+    </condition>
+
+    <condition id="Startup ARM">
+      <description>Startup assembler file for ARMCC</description>
+      <require Tcompiler="ARMCC"/>
+    </condition>
+
+     <condition id="AC7803x System">
+      <description>AutoChips AC7803x Driver</description>
+      <require condition="Startup ARM"/>
+      <require condition="AC7803x CMSIS-CORE"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="CKGEN"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="SPM"/>
+    </condition>
+
+    <condition id="AC7803x Debug Interface">
+      <description>AutoChips AC7803x Development Kit Debug Interface</description>
+      <require condition="AC7803x CMSIS-CORE"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="UART"/>
+      <require Cclass="Device" Cgroup="ATC Drivers" Csub="GPIO"/>
+      <require Cclass="Device" Cgroup="Startup"/>
+    </condition>
+  </conditions>
+
+  <!-- component section (optional for all Software Packs)-->
+  <components>
+    <component Cclass="Device" Cgroup="Startup" Cversion="1.0.0" condition="AC7803x CMSIS-CORE">
+      <description>System Startup for AutoChips AC7803x Series</description>
+      <files>
+        <!-- startup files -->
+        <file category="source"  name="Device/Source/ARM/startup_ac7803x.s" attr="config" condition="Startup ARM" version="1.0.0"/>
+        <!-- system file -->
+        <file category="source"  name="Device/Source/system_ac7803x.c"  attr="config" version="1.0.0"/>
+        <file category="source"  name="Device/Include/system_ac7803x.h"  attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Include/device_assert.h"  attr="config" version="1.0.0"/>
+        <file category="header"  name="Device/Include/ac7803x_debugout.h"  attr="config" version="1.0.0"/>
+      </files>
+    </component>
+
+   <!-- START: AutoChips ac7803x Standard Peripherals Drivers -->
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="ACMP" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Analog-Comparator driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_acmp.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_acmp_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_acmp.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="ADC" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Analog-to-digital converter (ADC) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_adc.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_adc_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_adc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="CKGEN" Cversion="1.0.0" condition="AC7803x CMSIS-CORE">
+      <description>ac7803x Clock generator (CKGEN) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_CKGEN
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_ckgen.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_ckgen.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="CAN" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Controller area network (CAN) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_can.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_can_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_can.c"/>
+      </files>
+    </component>
+
+      <component Cclass="Device" Cgroup="ATC Drivers" Csub="CRC" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x CRC calculation unit (CRC) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_crc.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_crc_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_crc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="CTU" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x CTU driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_ctu.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_ctu_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_ctu.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="DMA" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x DMA controller (DMA) driver driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_dma.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_dma_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_dma.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="eFlash" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Embedded Flash memory(eFlash) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_eflash.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_eflash_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_eflash.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="GPIO" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x General-purpose I/O (GPIO) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_gpio.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_gpio_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_gpio.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="I2C" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Inter-integrated circuit (I2C) interface driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_i2c.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_i2c_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_i2c.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="LIN" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Local Interconnect Network (LIN) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_lin.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_lin.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="PWDT" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Pulse Width Detection Timer (PWDT) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_pwdt.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_pwdt_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_pwdt.c"/>
+      </files>
+    </component>
+
+     <component Cclass="Device" Cgroup="ATC Drivers" Csub="MMDIVSQART" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x MMDIVSQART (MMDIVSQART) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_mmdivsqrt.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_mmdivsqrt_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_mmdivsqrt.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="EIO" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Enhanced input and output (EIO) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_EIO
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_eio.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_eio_hw.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_eio_comm.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_eio_i2c_drv.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_eio_i2s_drv.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_eio_spi_drv.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_eio_uart_drv.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_eio_comm.c"/>
+        <file category="source" name="ATC_Driver/src/ac780x_eio_i2c_drv.c"/>
+        <file category="source" name="ATC_Driver/src/ac780x_eio_i2s_drv.c"/>
+        <file category="source" name="ATC_Driver/src/ac780x_eio_spi_drv.c"/>
+        <file category="source" name="ATC_Driver/src/ac780x_eio_uart_drv.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="ECC SRAM" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Error Checking and Correction (ECC SRAM) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_SRAM
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_ecc_sram.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_ecc_sram.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="PWM" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Pulse Width Modulation (PWM) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_pwm.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_pwm_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_pwm.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="RTC" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Real-time clock (RTC) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_rtc.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_rtc_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_rtc.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="SPM" Cversion="1.0.0" condition="AC7803x CMSIS-CORE">
+      <description>ac7803x System power management (SPM) driver</description>
+      <RTE_Components_h>
+        #define RTE_DEVICE_DRIVER_SPM
+      </RTE_Components_h>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_spm.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_spm.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="SPI" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Serial peripheral interface (SPI) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_spi.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_spi_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_spi.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="TIMER" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Timers (TIMER) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_timer.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_timer_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_timer.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="UART" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Universal asynchronous receiver transmitter (UART) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_uart.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_uart_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_uart.c"/>
+      </files>
+    </component>
+
+    <component Cclass="Device" Cgroup="ATC Drivers" Csub="WDG" Cversion="1.0.0" condition="AC7803x System">
+      <description>ac7803x Watchdog (WDG) driver</description>
+      <files>
+        <file category="header" name="ATC_Driver/inc/ac780x_wdg.h"/>
+        <file category="header" name="ATC_Driver/inc/ac780x_wdg_reg.h"/>
+        <file category="source" name="ATC_Driver/src/ac780x_wdg.c"/>
+      </files>
+    </component>
+    <!-- END: AutoChips AC7803x Standard Peripherals Drivers -->
+
+   <!-- AutoChips AC7803x Development Board -->
+    <bundle Cbundle="AC7803x Development Kit" Cclass="Board Support" Cversion="1.0.0">
+      <description>AutoChips AC7803x Development Board </description>
+      <doc></doc>
+      <component Cgroup="AC7803x Development Kit" Csub="Debug" Cvariant="AC7803x Development Kit" condition="AC7803x Debug Interface">
+        <description>Debug Interface for AutoChips AC7803x Development Board</description>
+        <files>
+          <file category="header" name="Device/Include/ac7803x_debugout.h" attr="config" version="1.0.0"/>
+          <file category="source" name="Device/Source/ac7803x_debugout.c" attr="config" version="1.0.0"/>
+        </files>
+      </component>
+    </bundle>
+  </components>
+</package>

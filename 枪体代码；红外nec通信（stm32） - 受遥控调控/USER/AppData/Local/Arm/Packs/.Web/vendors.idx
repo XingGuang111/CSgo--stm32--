@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE cores SYSTEM "vendors.dtd">
+<vendors>
+  <vendor id="82" url="arm">
+    <name default="true">ARM</name>
+  </vendor>
+  <vendor id="3" url="atmel">
+    <name default="true">Atmel</name>
+  </vendor>
+  <vendor id="130" url="embeddedartists">
+    <name default="true">Embedded Artists</name>
+  </vendor>
+  <vendor id="100" url="spansion">
+    <name default="true">Spansion</name>
+    <name>Fujitsu</name>
+    <name>Fujitsu Semiconductor</name>
+  </vendor>
+  <vendor id="78" url="freescale">
+    <name default="true">Freescale</name>
+    <name>Freescale Semiconductor</name>
+  </vendor>
+  <vendor id="5" url="generic">
+    <name default="true">Generic</name>
+  </vendor>
+  <vendor id="13" url="stmicroelectronics">
+    <name default="true">STMicroelectronics</name>
+    <name>ST</name>
+  </vendor>
+  <vendor id="47" url="samsung">
+    <name default="true">Samsung</name>
+  </vendor>
+  <vendor id="16" url="texasinstruments">
+    <name default="true">Texas Instruments</name>
+    <name>TI</name>
+  </vendor>
+  <vendor id="999999" url="keil">
+    <name default="true">Keil</name>
+  </vendor>
+  <vendor id="11" url="nxp">
+    <name default="true">NXP</name>
+    <name>NXP (founded by Philips)</name>
+  </vendor>
+  <vendor id="21" url="siliconlabs">
+    <name default="true">Silicon Laboratories</name>
+    <name>Silicon Labs</name>
+  </vendor>
+  <vendor id="117" url="renesas">
+    <name default="true">Renesas</name>
+  </vendor>
+  <vendor id="1000" url="tessera">
+    <name default="true">Tessera</name>
+  </vendor>
+  <vendor id="92" url="toshiba">
+    <name default="true">Toshiba</name>
+  </vendor>
+  <vendor id="1" url="analogdevices">
+    <name default="true">Analog Devices</name>
+    <name>AnalogDevices</name>
+  </vendor>
+  <vendor id="110" url="sonix">
+    <name default="true">SONiX</name>
+  </vendor>
+  <vendor id="1002" url="lwip">
+    <name default="true">lwIP</name>
+  </vendor>
+  <vendor id="23" url="maxim">
+    <name default="true">Maxim</name>
+  </vendor>
+  <vendor id="126" url="abov">
+    <name default="true">ABOV</name>
+    <name>ABOV Semiconductor</name>
+  </vendor>
+  <vendor id="999" url="clarinox">
+    <name default="true">Clarinox</name>
+  </vendor>
+  <vendor id="123" url="gigadevice">
+    <name default="true">GigaDevice</name>
+  </vendor>
+  <vendor id="106" url="holtek">
+    <name default="true">Holtek</name>
+  </vendor>
+  <vendor id="7" url="infineon">
+    <name default="true">Infineon</name>
+  </vendor>
+  <vendor id="129" url="mediatek">
+    <name default="true">MediaTek</name>
+  </vendor>
+  <vendor id="112" url="microsemi">
+    <name default="true">Microsemi</name>
+  </vendor>
+  <vendor id="132" url="mindmotion">
+    <name default="true">MindMotion</name>
+  </vendor>
+  <vendor id="54" url="nordicsemiconductors">
+    <name default="true">Nordic Semiconductors</name>
+    <name>NordicSemiconductor</name>
+    <name>Nordic Semiconductor</name>
+  </vendor>
+  <vendor id="18" url="nuvoton">
+    <name default="true">Nuvoton</name>
+  </vendor>
+  <vendor id="89" url="zilog">
+    <name default="true">Zilog</name>
+  </vendor>
+  <vendor id="1001" url="wolfssl">
+    <name default="true">wolfSSL</name>
+  </vendor>
+</vendors>

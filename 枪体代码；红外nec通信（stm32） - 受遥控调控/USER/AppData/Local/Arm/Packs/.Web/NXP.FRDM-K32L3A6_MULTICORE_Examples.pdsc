@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns:xs="http://www.w3.org/2001/XMLSchema-instance" xs:noNamespaceSchemaLocation="PACK.xsd" schemaVersion="1.4">
+  <name>FRDM-K32L3A6_MULTICORE_Examples</name>
+  <vendor>NXP</vendor>
+  <description>Middleware multicore Examples Pack for FRDM-K32L3A6</description>
+  <url>https://mcuxpresso.nxp.com/cmsis_pack/repo/</url>
+  <license>Licenses.txt</license>
+  <releases>
+    <release version="1.0.0" date="2024-01-14">NXP CMSIS SBSP Packs based on MCUXpresso SDK 2.15.0</release>
+  </releases>
+  <keywords>
+    <keyword>Middleware Board Support Pack</keyword>
+  </keywords>
+  <requirements>
+    <packages>
+      <package name="FRDM-K32L3A6_BSP" vendor="NXP" version="18.0.0"/>
+      <package name="MULTICORE" vendor="NXP" version="11.0.0"/>
+      <package name="K32L3A60_DFP" vendor="NXP" version="18.0.0"/>
+      <package name="CMSIS" vendor="ARM" version="5.8.0"/>
+      <package name="FREERTOS-KERNEL" vendor="NXP" version="2.0.0"/>
+    </packages>
+    <languages>
+      <language name="C" version="99"/>
+    </languages>
+  </requirements>
+  <examples>
+    <example name="erpc_matrix_multiply_mu_rtos_cm0plus" folder="boards/frdmk32l3a6/multicore_examples/erpc_matrix_multiply_mu_rtos/cm0plus" doc="readme.md">
+      <description>The Multicore eRPC Matrix Multiply RTOS project is a simple demonstration program that uses theMCUXpresso SDK software and the Multicore SDK to show how to implement the Remote Procedure Callbetween cores of the multicore system. The primary core (eRPC client) releases the secondary core(eRPC server) from the reset and then the erpcMatrixMultiply() eRPC call is issued to let thesecondary core to perform the multiplication of two randomly generated matrices. The originalmatrices and the result matrix is printed out to the serial console by the primary core. Thematrix multiplication can be issued repeatedly when pressing a SW board button. MU (Messaging Unit)erpc transport layer is used in this example application.eRPC documentation eRPC specific files are stored in: middleware/multicore/erpc eRPC documentation is stored in: middleware/multicore/erpc/doc eRPC is open-source project stored on github: https://github.com/EmbeddedRPC/erpc eRPC documentation can be also found in: http://embeddedrpc.github.io</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/erpc_matrix_multiply_mu_rtos_cm0plus.uvprojx"/>
+        <environment name="csolution" load="../erpc_matrix_multiply_mu_rtos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="erpc_matrix_multiply_mu_cm0plus" folder="boards/frdmk32l3a6/multicore_examples/erpc_matrix_multiply_mu/cm0plus" doc="readme.md">
+      <description>The Multicore eRPC Matrix Multiply project is a simple demonstration program that uses theMCUXpresso SDK software and the Multicore SDK to show how to implement the Remote Procedure Callbetween cores of the multicore system. The primary core (eRPC client) releases the secondary core(eRPC server) from the reset and then the erpcMatrixMultiply() eRPC call is issued to let thesecondary core to perform the multiplication of two randomly generated matrices. The originalmatrices and the result matrix is printed out to the serial console by the primary core. Thematrix multiplication can be issued repeatedly when pressing a SW board button. MU (Messaging Unit)erpc transport layer is used in this example application.eRPC documentation eRPC specific files are stored in: middleware/multicore/erpc eRPC documentation is stored in: middleware/multicore/erpc/doc eRPC is open-source project stored on github: https://github.com/EmbeddedRPC/erpc eRPC documentation can be also found in: http://embeddedrpc.github.io</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/erpc_matrix_multiply_mu_cm0plus.uvprojx"/>
+        <environment name="csolution" load="../erpc_matrix_multiply_mu.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="erpc_matrix_multiply_rpmsg_rtos_cm0plus" folder="boards/frdmk32l3a6/multicore_examples/erpc_matrix_multiply_rpmsg_rtos/cm0plus" doc="readme.md">
+      <description>The Multicore eRPC Matrix Multiply RTOS project is a simple demonstration program that uses theMCUXpresso SDK software and the Multicore SDK to show how to implement the Remote Procedure Callbetween cores of the multicore system. The primary core (eRPC client) releases the secondary core(eRPC server) from the reset and then the erpcMatrixMultiply() eRPC call is issued to let thesecondary core to perform the multiplication of two randomly generated matrices. The originalmatrices and the result matrix is printed out to the serial console by the primary core. Thematrix multiplication can be issued repeatedly when pressing a SW board button. RPMsg-Lite erpctransport layer is used in this example application.Shared memory usageThis multicore example uses the shared memory for data exchange. The shared memory region isdefined and the size can be adjustable in the linker file. The shared memory region start addressand the size have to be defined in linker file for each core equally. The shared memory startaddress is then exported from the linker to the application.eRPC documentationeRPC specific files are stored in: middleware/multicore_&lt;version&gt;/erpceRPC documentation is stored in: middleware/multicore_&lt;version&gt;/erpc/doceRPC is open-source project stored on github: https://github.com/EmbeddedRPC/erpceRPC documentation can be also found in: http://embeddedrpc.github.io</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/erpc_matrix_multiply_rpmsg_rtos_cm0plus.uvprojx"/>
+        <environment name="csolution" load="../erpc_matrix_multiply_rpmsg_rtos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="erpc_matrix_multiply_rpmsg_cm0plus" folder="boards/frdmk32l3a6/multicore_examples/erpc_matrix_multiply_rpmsg/cm0plus" doc="readme.md">
+      <description>The Multicore eRPC Matrix Multiply project is a simple demonstration program that uses theMCUXpresso SDK software and the Multicore SDK to show how to implement the Remote Procedure Callbetween cores of the multicore system. The primary core (eRPC client) releases the secondary core(eRPC server) from the reset and then the erpcMatrixMultiply() eRPC call is issued to let thesecondary core to perform the multiplication of two randomly generated matrices. The originalmatrices and the result matrix is printed out to the serial console by the primary core. Thematrix multiplication can be issued repeatedly when pressing a SW board button. RPMsg-Lite erpctransport layer is used in this example application.Shared memory usageThis multicore example uses the shared memory for data exchange. The shared memory region isdefined and the size can be adjustable in the linker file. The shared memory region start addressand the size have to be defined in linker file for each core equally. The shared memory startaddress is then exported from the linker to the application.eRPC documentationeRPC specific files are stored in: middleware/multicore_&lt;version&gt;/erpceRPC documentation is stored in: middleware/multicore_&lt;version&gt;/erpc/doceRPC is open-source project stored on github: https://github.com/EmbeddedRPC/erpceRPC documentation can be also found in: http://embeddedrpc.github.io</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/erpc_matrix_multiply_rpmsg_cm0plus.uvprojx"/>
+        <environment name="csolution" load="../erpc_matrix_multiply_rpmsg.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="erpc_two_way_rpc_rpmsg_rtos_cm0plus" folder="boards/frdmk32l3a6/multicore_examples/erpc_two_way_rpc_rpmsg_rtos/cm0plus" doc="readme.md">
+      <description>The Multicore eRPC Two Way RPC RTOS project is a simple demonstration program that uses the MCUXpresso SDK software and the Multicore SDK to show how to implement the Remote Procedure Call between cores of the multicore system. This multicore example shows how both the eRPC client and the eRPC server can be setup on one side/core (bidirectional communication) and how to handle callback functions in eRPC. The primary core (Core0) creates client and server tasks first. The client task releases the secondary core from the reset, initializes the RPMsg-Lite erpc transport and once the server task is running it configures the arbitrated client. Then the application logic is running. The secondary core (Core1) creates client and server tasks two. The client task initializes the RPMsg-Lite erpc transport and once the server task is running it configures the arbitrated client. Then the application logic is running. The client task logic of the Core1 is very simple, it repeatedly calls the increaseNumber() erpc function that is implemented on the Core0 and that increments the counter. The client task logic of the Core0 alternately issues either getNumberFromCore0() function implementation on the Core0 or getNumberFromCore1() function implementation on the Core1 (erpc call). Then, the nestedCallGetNumber() erpc function call is issued that alternately triggers either getNumberFromCore1() function implementation on the Core1 (normal erpc call) or it triggers the getNumberFromCore0() function implementation on the Core0 (nested erpc call, routed through the Core1 erpc server).</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/erpc_two_way_rpc_rpmsg_rtos_cm0plus.uvprojx"/>
+        <environment name="csolution" load="../erpc_two_way_rpc_rpmsg_rtos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_message_buffers_cm0plus" folder="boards/frdmk32l3a6/multicore_examples/freertos_message_buffers/cm0plus" doc="readme.md">
+      <description>The FreeRTOS Message Buffers multicore project is a simple demonstration program that uses the MCUXpresso SDK software and the Message Buffers component of FreeRTOS. It shows how to implement lightweight core to core communication using FreeRTOS Message Buffers, which are lockless circular buffers that can pass data packets of varying sizes from a single sender to a single receiver. The primary core releases the secondary core from the reset and then the inter-core communication is established then. Once the Message Buffers are initialized on both cores the message exchange starts, incrementing a virtual counter that is part of the message payload. The message pingpong finishes when the counter reaches the value of 100. The Message Buffer is deinitialized at the end. NXP Multicore Manager (MCMGR) component is used for several purposes in this example: - it releases the secondary core from the reset (starts the secondary code) - it registers and use the application event for init handshaking (the secondary core application signals to the primary core it is ready to communicate) - it registers and use the FreeRtosMessageBuffersEvent for inter-core interrupts triggering and interrupts handling. Shared memory usage: This multicore example uses the shared memory for data exchange. The shared memory region is defined and the size can be adjustable in the linker file. The shared memory region start address and the size have to be defined in linker file for each core equally. The shared memory start address is then exported from the linker to the application to allow placing FreeRTOS Message Buffers at a fixed location that is then known for both cores.</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_message_buffers_cm0plus.uvprojx"/>
+        <environment name="csolution" load="../freertos_message_buffers.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="hello_world_cm0plus" folder="boards/frdmk32l3a6/multicore_examples/hello_world/cm0plus" doc="readme.md">
+      <description>The Multicore Hello World demo application demonstrates how to set up projects for individualcores on a multicore system. In this demo, the primary core prints the "Hello World from the Primary Core!"string to the terminal and then releases the secondary core from the reset. The secondarycore toggles an on-board LED indicating that the secondary core is running.</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/hello_world_cm0plus.uvprojx"/>
+        <environment name="csolution" load="../hello_world_multicore.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="multicore_manager_cm0plus" folder="boards/frdmk32l3a6/multicore_examples/multicore_manager/cm0plus" doc="readme.md">
+      <description>The Multicore Manager example application demonstrates advanced features of the MCMgr component.
+In this demo, the primary core prints the "Hello World from the Primary Core!" string to the terminal
+and then releases the secondary core from the reset. The secondary
+core toggles an on-board LED indicating that the secondary core is running. It is also possible to
+stop/start the secondary core during the runtime by pressing on-board buttons. The
+on-board LED then indicates the change, it stops/starts toggling accordingly.
+
+This application also shows how to use the Multicore Manager for
+remote core monitoring and handling of events such as application, CoreUp, CoreDown and exception events.
+Application-specific callback functions for events are registered by the MCMGR_RegisterEvent() API
+on the primary core. Triggering these events is done using the MCMGR_TriggerEvent() API on the
+secondary core. While CoreUp, CoreDown events are triggered from startup and MCMGR code, the
+application event is triggered from the application.
+The exception event is triggered in the secondary application after 100 LED toggles by trying
+to write to flash. This raises the exception on the secondary core and triggers the
+RemoteExceptionEvent on the primary core.
+</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/multicore_manager_cm0plus.uvprojx"/>
+        <environment name="csolution" load="../multicore_manager.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="rpmsg_lite_pingpong_rtos_cm0plus" folder="boards/frdmk32l3a6/multicore_examples/rpmsg_lite_pingpong_rtos/cm0plus" doc="readme.md">
+      <description>The Multicore RPMsg-Lite pingpong RTOS project is a simple demonstration program that uses theMCUXpresso SDK software and the RPMsg-Lite library and shows how to implement the inter-corecommunicaton between cores of the multicore system. The primary core releases the secondary corefrom the reset and then the inter-core communication is established. Once the RPMsg is initializedand endpoints are created the message exchange starts, incrementing a virtual counter that is partof the message payload. The message pingpong finishes when the counter reaches the value of 100.Then the RPMsg-Lite is deinitialized and the procedure of the data exchange is repeated again.Shared memory usageThis multicore example uses the shared memory for data exchange. The shared memory region isdefined and the size can be adjustable in the linker file. The shared memory region start addressand the size have to be defined in linker file for each core equally. The shared memory startaddress is then exported from the linker to the application.</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/rpmsg_lite_pingpong_rtos_cm0plus.uvprojx"/>
+        <environment name="csolution" load="../rpmsg_lite_pingpong_rtos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="rpmsg_lite_pingpong_cm0plus" folder="boards/frdmk32l3a6/multicore_examples/rpmsg_lite_pingpong/cm0plus" doc="readme.md">
+      <description>The Multicore RPMsg-Lite pingpong project is a simple demonstration program that uses theMCUXpresso SDK software and the RPMsg-Lite library and shows how to implement the inter-corecommunicaton between cores of the multicore system. The primary core releases the secondary corefrom the reset and then the inter-core communication is established. Once the RPMsg is initializedand endpoints are created the message exchange starts, incrementing a virtual counter that is partof the message payload. The message pingpong finishes when the counter reaches the value of 100.Then the RPMsg-Lite is deinitialized and the procedure of the data exchange is repeated again.Shared memory usageThis multicore example uses the shared memory for data exchange. The shared memory region isdefined and the size can be adjustable in the linker file. The shared memory region start addressand the size have to be defined in linker file for each core equally. The shared memory startaddress is then exported from the linker to the application.</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/rpmsg_lite_pingpong_cm0plus.uvprojx"/>
+        <environment name="csolution" load="../rpmsg_lite_pingpong.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="erpc_matrix_multiply_mu_cm4" folder="boards/frdmk32l3a6/multicore_examples/erpc_matrix_multiply_mu/cm4" doc="readme.md">
+      <description>The Multicore eRPC Matrix Multiply project is a simple demonstration program that uses theMCUXpresso SDK software and the Multicore SDK to show how to implement the Remote Procedure Callbetween cores of the multicore system. The primary core (eRPC client) releases the secondary core(eRPC server) from the reset and then the erpcMatrixMultiply() eRPC call is issued to let thesecondary core to perform the multiplication of two randomly generated matrices. The originalmatrices and the result matrix is printed out to the serial console by the primary core. Thematrix multiplication can be issued repeatedly when pressing a SW board button. MU (Messaging Unit)erpc transport layer is used in this example application.eRPC documentation eRPC specific files are stored in: middleware/multicore/erpc eRPC documentation is stored in: middleware/multicore/erpc/doc eRPC is open-source project stored on github: https://github.com/EmbeddedRPC/erpc eRPC documentation can be also found in: http://embeddedrpc.github.io</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/erpc_matrix_multiply_mu_cm4.uvprojx"/>
+        <environment name="csolution" load="../erpc_matrix_multiply_mu.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="erpc_matrix_multiply_mu_rtos_cm4" folder="boards/frdmk32l3a6/multicore_examples/erpc_matrix_multiply_mu_rtos/cm4" doc="readme.md">
+      <description>The Multicore eRPC Matrix Multiply RTOS project is a simple demonstration program that uses theMCUXpresso SDK software and the Multicore SDK to show how to implement the Remote Procedure Callbetween cores of the multicore system. The primary core (eRPC client) releases the secondary core(eRPC server) from the reset and then the erpcMatrixMultiply() eRPC call is issued to let thesecondary core to perform the multiplication of two randomly generated matrices. The originalmatrices and the result matrix is printed out to the serial console by the primary core. Thematrix multiplication can be issued repeatedly when pressing a SW board button. MU (Messaging Unit)erpc transport layer is used in this example application.eRPC documentation eRPC specific files are stored in: middleware/multicore/erpc eRPC documentation is stored in: middleware/multicore/erpc/doc eRPC is open-source project stored on github: https://github.com/EmbeddedRPC/erpc eRPC documentation can be also found in: http://embeddedrpc.github.io</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/erpc_matrix_multiply_mu_rtos_cm4.uvprojx"/>
+        <environment name="csolution" load="../erpc_matrix_multiply_mu_rtos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="erpc_matrix_multiply_rpmsg_cm4" folder="boards/frdmk32l3a6/multicore_examples/erpc_matrix_multiply_rpmsg/cm4" doc="readme.md">
+      <description>The Multicore eRPC Matrix Multiply project is a simple demonstration program that uses theMCUXpresso SDK software and the Multicore SDK to show how to implement the Remote Procedure Callbetween cores of the multicore system. The primary core (eRPC client) releases the secondary core(eRPC server) from the reset and then the erpcMatrixMultiply() eRPC call is issued to let thesecondary core to perform the multiplication of two randomly generated matrices. The originalmatrices and the result matrix is printed out to the serial console by the primary core. Thematrix multiplication can be issued repeatedly when pressing a SW board button. RPMsg-Lite erpctransport layer is used in this example application.Shared memory usageThis multicore example uses the shared memory for data exchange. The shared memory region isdefined and the size can be adjustable in the linker file. The shared memory region start addressand the size have to be defined in linker file for each core equally. The shared memory startaddress is then exported from the linker to the application.eRPC documentationeRPC specific files are stored in: middleware/multicore_&lt;version&gt;/erpceRPC documentation is stored in: middleware/multicore_&lt;version&gt;/erpc/doceRPC is open-source project stored on github: https://github.com/EmbeddedRPC/erpceRPC documentation can be also found in: http://embeddedrpc.github.io</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/erpc_matrix_multiply_rpmsg_cm4.uvprojx"/>
+        <environment name="csolution" load="../erpc_matrix_multiply_rpmsg.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="erpc_matrix_multiply_rpmsg_rtos_cm4" folder="boards/frdmk32l3a6/multicore_examples/erpc_matrix_multiply_rpmsg_rtos/cm4" doc="readme.md">
+      <description>The Multicore eRPC Matrix Multiply RTOS project is a simple demonstration program that uses theMCUXpresso SDK software and the Multicore SDK to show how to implement the Remote Procedure Callbetween cores of the multicore system. The primary core (eRPC client) releases the secondary core(eRPC server) from the reset and then the erpcMatrixMultiply() eRPC call is issued to let thesecondary core to perform the multiplication of two randomly generated matrices. The originalmatrices and the result matrix is printed out to the serial console by the primary core. Thematrix multiplication can be issued repeatedly when pressing a SW board button. RPMsg-Lite erpctransport layer is used in this example application.Shared memory usageThis multicore example uses the shared memory for data exchange. The shared memory region isdefined and the size can be adjustable in the linker file. The shared memory region start addressand the size have to be defined in linker file for each core equally. The shared memory startaddress is then exported from the linker to the application.eRPC documentationeRPC specific files are stored in: middleware/multicore_&lt;version&gt;/erpceRPC documentation is stored in: middleware/multicore_&lt;version&gt;/erpc/doceRPC is open-source project stored on github: https://github.com/EmbeddedRPC/erpceRPC documentation can be also found in: http://embeddedrpc.github.io</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/erpc_matrix_multiply_rpmsg_rtos_cm4.uvprojx"/>
+        <environment name="csolution" load="../erpc_matrix_multiply_rpmsg_rtos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="erpc_two_way_rpc_rpmsg_rtos_cm4" folder="boards/frdmk32l3a6/multicore_examples/erpc_two_way_rpc_rpmsg_rtos/cm4" doc="readme.md">
+      <description>The Multicore eRPC Two Way RPC RTOS project is a simple demonstration program that uses the MCUXpresso SDK software and the Multicore SDK to show how to implement the Remote Procedure Call between cores of the multicore system. This multicore example shows how both the eRPC client and the eRPC server can be setup on one side/core (bidirectional communication) and how to handle callback functions in eRPC. The primary core (Core0) creates client and server tasks first. The client task releases the secondary core from the reset, initializes the RPMsg-Lite erpc transport and once the server task is running it configures the arbitrated client. Then the application logic is running. The secondary core (Core1) creates client and server tasks two. The client task initializes the RPMsg-Lite erpc transport and once the server task is running it configures the arbitrated client. Then the application logic is running. The client task logic of the Core1 is very simple, it repeatedly calls the increaseNumber() erpc function that is implemented on the Core0 and that increments the counter. The client task logic of the Core0 alternately issues either getNumberFromCore0() function implementation on the Core0 or getNumberFromCore1() function implementation on the Core1 (erpc call). Then, the nestedCallGetNumber() erpc function call is issued that alternately triggers either getNumberFromCore1() function implementation on the Core1 (normal erpc call) or it triggers the getNumberFromCore0() function implementation on the Core0 (nested erpc call, routed through the Core1 erpc server).</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/erpc_two_way_rpc_rpmsg_rtos_cm4.uvprojx"/>
+        <environment name="csolution" load="../erpc_two_way_rpc_rpmsg_rtos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="freertos_message_buffers_cm4" folder="boards/frdmk32l3a6/multicore_examples/freertos_message_buffers/cm4" doc="readme.md">
+      <description>The FreeRTOS Message Buffers multicore project is a simple demonstration program that uses the MCUXpresso SDK software and the Message Buffers component of FreeRTOS. It shows how to implement lightweight core to core communication using FreeRTOS Message Buffers, which are lockless circular buffers that can pass data packets of varying sizes from a single sender to a single receiver. The primary core releases the secondary core from the reset and then the inter-core communication is established then. Once the Message Buffers are initialized on both cores the message exchange starts, incrementing a virtual counter that is part of the message payload. The message pingpong finishes when the counter reaches the value of 100. The Message Buffer is deinitialized at the end. NXP Multicore Manager (MCMGR) component is used for several purposes in this example: - it releases the secondary core from the reset (starts the secondary code) - it registers and use the application event for init handshaking (the secondary core application signals to the primary core it is ready to communicate) - it registers and use the FreeRtosMessageBuffersEvent for inter-core interrupts triggering and interrupts handling. Shared memory usage: This multicore example uses the shared memory for data exchange. The shared memory region is defined and the size can be adjustable in the linker file. The shared memory region start address and the size have to be defined in linker file for each core equally. The shared memory start address is then exported from the linker to the application to allow placing FreeRTOS Message Buffers at a fixed location that is then known for both cores.</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/freertos_message_buffers_cm4.uvprojx"/>
+        <environment name="csolution" load="../freertos_message_buffers.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="hello_world_cm4" folder="boards/frdmk32l3a6/multicore_examples/hello_world/cm4" doc="readme.md">
+      <description>The Multicore Hello World demo application demonstrates how to set up projects for individualcores on a multicore system. In this demo, the primary core prints the "Hello World from the Primary Core!"string to the terminal and then releases the secondary core from the reset. The secondarycore toggles an on-board LED indicating that the secondary core is running.</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/hello_world_cm4.uvprojx"/>
+        <environment name="csolution" load="../hello_world_multicore.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="multicore_manager_cm4" folder="boards/frdmk32l3a6/multicore_examples/multicore_manager/cm4" doc="readme.md">
+      <description>The Multicore Manager example application demonstrates advanced features of the MCMgr component.
+In this demo, the primary core prints the "Hello World from the Primary Core!" string to the terminal
+and then releases the secondary core from the reset. The secondary
+core toggles an on-board LED indicating that the secondary core is running. It is also possible to
+stop/start the secondary core during the runtime by pressing on-board buttons. The
+on-board LED then indicates the change, it stops/starts toggling accordingly.
+
+This application also shows how to use the Multicore Manager for
+remote core monitoring and handling of events such as application, CoreUp, CoreDown and exception events.
+Application-specific callback functions for events are registered by the MCMGR_RegisterEvent() API
+on the primary core. Triggering these events is done using the MCMGR_TriggerEvent() API on the
+secondary core. While CoreUp, CoreDown events are triggered from startup and MCMGR code, the
+application event is triggered from the application.
+The exception event is triggered in the secondary application after 100 LED toggles by trying
+to write to flash. This raises the exception on the secondary core and triggers the
+RemoteExceptionEvent on the primary core.
+</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/multicore_manager_cm4.uvprojx"/>
+        <environment name="csolution" load="../multicore_manager.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="rpmsg_lite_pingpong_cm4" folder="boards/frdmk32l3a6/multicore_examples/rpmsg_lite_pingpong/cm4" doc="readme.md">
+      <description>The Multicore RPMsg-Lite pingpong project is a simple demonstration program that uses theMCUXpresso SDK software and the RPMsg-Lite library and shows how to implement the inter-corecommunicaton between cores of the multicore system. The primary core releases the secondary corefrom the reset and then the inter-core communication is established. Once the RPMsg is initializedand endpoints are created the message exchange starts, incrementing a virtual counter that is partof the message payload. The message pingpong finishes when the counter reaches the value of 100.Then the RPMsg-Lite is deinitialized and the procedure of the data exchange is repeated again.Shared memory usageThis multicore example uses the shared memory for data exchange. The shared memory region isdefined and the size can be adjustable in the linker file. The shared memory region start addressand the size have to be defined in linker file for each core equally. The shared memory startaddress is then exported from the linker to the application.</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/rpmsg_lite_pingpong_cm4.uvprojx"/>
+        <environment name="csolution" load="../rpmsg_lite_pingpong.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+    <example name="rpmsg_lite_pingpong_rtos_cm4" folder="boards/frdmk32l3a6/multicore_examples/rpmsg_lite_pingpong_rtos/cm4" doc="readme.md">
+      <description>The Multicore RPMsg-Lite pingpong RTOS project is a simple demonstration program that uses theMCUXpresso SDK software and the RPMsg-Lite library and shows how to implement the inter-corecommunicaton between cores of the multicore system. The primary core releases the secondary corefrom the reset and then the inter-core communication is established. Once the RPMsg is initializedand endpoints are created the message exchange starts, incrementing a virtual counter that is partof the message payload. The message pingpong finishes when the counter reaches the value of 100.Then the RPMsg-Lite is deinitialized and the procedure of the data exchange is repeated again.Shared memory usageThis multicore example uses the shared memory for data exchange. The shared memory region isdefined and the size can be adjustable in the linker file. The shared memory region start addressand the size have to be defined in linker file for each core equally. The shared memory startaddress is then exported from the linker to the application.</description>
+      <board name="FRDM-K32L3A6" vendor="NXP" Dvendor="NXP:11"/>
+      <project>
+        <environment name="uv" load="mdk/rpmsg_lite_pingpong_rtos_cm4.uvprojx"/>
+        <environment name="csolution" load="../rpmsg_lite_pingpong_rtos.csolution.yml"/>
+      </project>
+      <attributes/>
+    </example>
+  </examples>
+</package>
